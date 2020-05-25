@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace WebApi.CommandHandlers {
+namespace WebApi.Commands {
   public interface ICommandHandler<in T> {
     public Task Handle(T command);
   }
