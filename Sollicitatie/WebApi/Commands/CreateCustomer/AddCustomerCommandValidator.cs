@@ -7,7 +7,7 @@ namespace WebApi.Commands.CreateCustomer {
     public AddCustomerCommandValidator() {
       RuleFor(_ => _.FirstName).NotEmpty();
       RuleFor(_ => _.SurName).NotEmpty();
-      RuleFor(_ => _.Address).SetValidator(new CustomerAddressValidator());
+      RuleFor(_ => _.Address).SetValidator(new AddressValidator());
       RuleForEach(_ => _.ContactDetails).SetValidator(new ContactInformationValidator());
     }
   }

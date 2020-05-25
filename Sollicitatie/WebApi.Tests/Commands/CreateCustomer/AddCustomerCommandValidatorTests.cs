@@ -45,7 +45,7 @@ namespace WebApi.Tests.Commands.CreateCustomer {
 
     [Fact]
     public void It_should_validate_the_address() {
-      _sut.ShouldHaveChildValidator(_ => _.Address, typeof(CustomerAddressValidator));
+      _sut.ShouldHaveChildValidator(_ => _.Address, typeof(AddressValidator));
     }
     
     [Fact]
