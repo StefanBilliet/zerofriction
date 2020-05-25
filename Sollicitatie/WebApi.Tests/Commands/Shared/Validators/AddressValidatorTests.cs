@@ -1,10 +1,12 @@
+using FluentValidation;
 using FluentValidation.TestHelper;
+using WebApi.Commands.CreateCustomer.Contracts;
 using WebApi.Commands.Shared.Validators;
 using Xunit;
 
 namespace WebApi.Tests.Commands.Shared.Validators {
   public class AddressValidatorTests {
-    private readonly AddressValidator _sut;
+    private readonly IValidator<Address> _sut;
 
     public AddressValidatorTests() {
       _sut = new AddressValidator();
