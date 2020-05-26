@@ -5,7 +5,7 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Fluent;
 using Xunit;
 
-namespace WebApi.Tests {
+namespace Tests {
   public class Scratchpad {
     [Fact(Skip = "Scratchpad")]
     public async Task FactMethodName() {

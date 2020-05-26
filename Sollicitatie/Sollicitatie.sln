@@ -2,13 +2,15 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{DAF5471B-E166-484F-9799-CE9BFE330D9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Tests", "WebApi.Tests\WebApi.Tests.csproj", "{3BB07D35-55C8-4C2E-ABA9-D2406489A481}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{3BB07D35-55C8-4C2E-ABA9-D2406489A481}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{E0BDADF5-6099-4B55-A561-259A22111E27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{63E4D453-381B-4F8A-BD75-D247F25C58BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{5D43651F-FE84-40A7-BA46-80CB4B882513}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{C8D5AAAC-0C5F-4520-9633-1D24D613275B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,9 @@ Global
 		{5D43651F-FE84-40A7-BA46-80CB4B882513}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D43651F-FE84-40A7-BA46-80CB4B882513}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D43651F-FE84-40A7-BA46-80CB4B882513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8D5AAAC-0C5F-4520-9633-1D24D613275B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8D5AAAC-0C5F-4520-9633-1D24D613275B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8D5AAAC-0C5F-4520-9633-1D24D613275B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8D5AAAC-0C5F-4520-9633-1D24D613275B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

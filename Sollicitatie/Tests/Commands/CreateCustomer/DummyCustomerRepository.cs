@@ -3,7 +3,7 @@ using Data.Repositories;
 using Domain;
 using Domain.State;
 
-namespace WebApi.Tests.Commands.CreateCustomer {
+namespace Tests.Commands.CreateCustomer {
   public class DummyCustomerRepository : ICustomerRepository {
     public CustomerState? UpsertedCustomer { get; set; }
 

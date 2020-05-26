@@ -4,7 +4,7 @@ using WebApi.Commands.CreateCustomer.Contracts;
 using WebApi.Commands.Shared.Validators;
 using Xunit;
 
-namespace WebApi.Tests.Commands.Shared.Validators {
+namespace Tests.Commands.Shared.Validators {
   public class AddressValidatorTests {
     private readonly IValidator<Address> _sut;
 

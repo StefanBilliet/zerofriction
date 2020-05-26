@@ -3,7 +3,7 @@ using WebApi.Commands;
 using WebApi.Commands.CreateCustomer.Contracts;
 using WebApi.Controllers;
 
-namespace WebApi.Tests.Controllers.Customers {
+namespace Tests.Controllers.Customers {
   public partial class CustomersControllerTests {
     private readonly ICommandHandler<AddCustomerCommand> _addCustomerCommandHandler;
     private readonly CustomersController _sut;

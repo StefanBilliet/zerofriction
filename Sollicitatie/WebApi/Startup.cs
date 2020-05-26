@@ -1,8 +1,15 @@
+using Data;
+using Data.Repositories;
+using FluentValidation;
+using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApi.Commands;
+using WebApi.Commands.CreateCustomer;
+using WebApi.Commands.CreateCustomer.Contracts;
 
 namespace WebApi
 {

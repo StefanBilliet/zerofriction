@@ -5,7 +5,7 @@ using WebApi.Commands.CreateCustomer.Contracts;
 using WebApi.Commands.Shared.Validators;
 using Xunit;
 
-namespace WebApi.Tests.Commands.CreateCustomer {
+namespace Tests.Commands.CreateCustomer {
   public class AddCustomerCommandValidatorTests {
     private readonly IValidator<AddCustomerCommand> _sut;
 

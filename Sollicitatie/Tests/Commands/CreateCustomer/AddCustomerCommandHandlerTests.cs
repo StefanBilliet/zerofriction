@@ -3,14 +3,14 @@ using System.Threading.Tasks;
 using AutoFixture;
 using Domain.State;
 using FluentValidation;
+using Tests.Infrastructure;
 using WebApi.Commands.CreateCustomer;
 using WebApi.Commands.CreateCustomer.Contracts;
-using WebApi.Tests.Infrastructure;
 using Xunit;
 using ContactInformation = WebApi.Commands.CreateCustomer.Contracts.ContactInformation;
 using ContactInformationType = WebApi.Commands.CreateCustomer.Contracts.ContactInformationType;
 
-namespace WebApi.Tests.Commands.CreateCustomer {
+namespace Tests.Commands.CreateCustomer {
   public class AddCustomerCommandHandlerTests {
     private readonly DummyCustomerRepository _customerRepository;
     private readonly AddCustomerCommandHandler _sut;

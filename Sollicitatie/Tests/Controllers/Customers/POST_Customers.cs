@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Commands.CreateCustomer.Contracts;
 using Xunit;
 
-namespace WebApi.Tests.Controllers.Customers {
+namespace Tests.Controllers.Customers {
   public partial class CustomersControllerTests {
     [Theory, AutoData]
     public async Task WHEN_POST_customer_with_invalid_command_THEN_returns_BadRequest(AddCustomerCommand command) {
