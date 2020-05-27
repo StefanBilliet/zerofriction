@@ -3,7 +3,7 @@ using Data.Repositories;
 using Domain;
 using Domain.State;
 
-namespace Tests.Commands.CreateCustomer {
+namespace Tests.Commands.Fakes {
   public class DummyCustomerRepository : ICustomerRepository {
     public CustomerState? UpsertedCustomer { get; set; }
 

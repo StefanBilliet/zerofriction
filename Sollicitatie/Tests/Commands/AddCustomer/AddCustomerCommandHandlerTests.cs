@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoFixture;
 using Domain.State;
 using FluentValidation;
+using Tests.Commands.Fakes;
 using Tests.Infrastructure;
 using WebApi.Commands.CreateCustomer;
 using WebApi.Commands.CreateCustomer.Contracts;
