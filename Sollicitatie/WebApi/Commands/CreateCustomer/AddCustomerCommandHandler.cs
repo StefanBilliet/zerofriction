@@ -5,6 +5,7 @@ using Data.Repositories;
 using Domain;
 using FluentValidation;
 using WebApi.Commands.CreateCustomer.Contracts;
+using WebApi.Commands.Shared;
 using Address = Domain.Address;
 using ContactInformation = Domain.ContactInformation;
 using ContactInformationType = Domain.ContactInformationType;

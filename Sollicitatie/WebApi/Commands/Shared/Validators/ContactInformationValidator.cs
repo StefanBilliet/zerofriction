@@ -1,6 +1,7 @@
 using FluentValidation;
 using PhoneNumbers;
 using WebApi.Commands.CreateCustomer.Contracts;
+using WebApi.Commands.Shared.Contracts;
 
 namespace WebApi.Commands.Shared.Validators {
   public class ContactInformationValidator : AbstractValidator<ContactInformation> {

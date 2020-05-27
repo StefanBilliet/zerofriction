@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using WebApi.Commands.Shared.Contracts;
 
 namespace WebApi.Commands.CreateCustomer.Contracts {
   public class AddCustomerCommand {

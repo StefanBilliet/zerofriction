@@ -1,4 +1,4 @@
-namespace WebApi.Commands.CreateCustomer.Contracts {
+namespace WebApi.Commands.Shared.Contracts {
   public class Address {
     public string Street { get; set; } = "";
     public string NumberAndSuffix { get; set; } = "";

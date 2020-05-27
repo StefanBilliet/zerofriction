@@ -7,8 +7,8 @@ using Tests.Infrastructure;
 using WebApi.Commands.CreateCustomer;
 using WebApi.Commands.CreateCustomer.Contracts;
 using Xunit;
-using ContactInformation = WebApi.Commands.CreateCustomer.Contracts.ContactInformation;
-using ContactInformationType = WebApi.Commands.CreateCustomer.Contracts.ContactInformationType;
+using ContactInformation = WebApi.Commands.Shared.Contracts.ContactInformation;
+using ContactInformationType = WebApi.Commands.Shared.Contracts.ContactInformationType;
 
 namespace Tests.Commands.CreateCustomer {
   public class AddCustomerCommandHandlerTests {

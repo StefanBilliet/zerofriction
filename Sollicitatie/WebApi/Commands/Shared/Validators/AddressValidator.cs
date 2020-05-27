@@ -1,5 +1,6 @@
 using FluentValidation;
 using WebApi.Commands.CreateCustomer.Contracts;
+using WebApi.Commands.Shared.Contracts;
 
 namespace WebApi.Commands.Shared.Validators {
   public class AddressValidator : AbstractValidator<Address> {
