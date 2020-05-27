@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoFixture.Xunit2;
 using Data;
 using Data.Repositories;

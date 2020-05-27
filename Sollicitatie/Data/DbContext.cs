@@ -3,10 +3,10 @@ using Microsoft.Azure.Cosmos;
 
 namespace Data {
   public interface IDbContext {
-    public Container Customers { get; set; }
+    public Container Customers { get; }
   }
 
-  public class DbContext {
+  public class DbContext : IDbContext {
     private readonly CosmosClient _cosmosClient;
 
     public Container Customers => _cosmosClient.GetContainer(DatabaseInfo.Database, DatabaseInfo.CustomersContainer);
