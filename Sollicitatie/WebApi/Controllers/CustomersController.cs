@@ -15,8 +15,7 @@ namespace WebApi.Controllers {
       _addCustomerCommandHandler = addCustomerCommandHandler ?? throw new ArgumentNullException(nameof(addCustomerCommandHandler));
     }
 
-    [HttpPost]
-    [Route("/customers")]
+    [HttpPost("customers")]
     public async Task<IActionResult> CreateCustomer(AddCustomerCommand command) {
       try {
         await _addCustomerCommandHandler.Handle(command);

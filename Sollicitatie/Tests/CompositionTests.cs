@@ -16,8 +16,8 @@ namespace Tests {
 
     [Theory]
     [MemberData(nameof(TestCases))]
-    public void Container_can_resolve_all_functions(Type functionType) {
-      _provider.GetRequiredService<CustomersController>();
+    public void Container_can_resolve_all_controllers(Type controllerType) {
+      _provider.GetRequiredService(controllerType);
     }
 
     public static IEnumerable<object[]> TestCases =>

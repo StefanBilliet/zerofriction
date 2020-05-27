@@ -22,7 +22,6 @@ namespace WebApi {
 
     public IConfiguration Configuration { get; }
 
-    // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services) {
       services
         .AddControllers();
@@ -31,7 +30,7 @@ namespace WebApi {
       services.AddTransient<ICustomerRepository, CustomerRepository>();
       services.AddScoped<IDbContext, DbContext>();
       services.AddSingleton(provider => {
-        var configurationRoot = provider.GetService<IConfigurationRoot>();
+        var configurationRoot = provider.GetRequiredService<IConfiguration>();
         var cosmosClient = new CosmosClientBuilder(configurationRoot["ZeroFrictionDatabaseConnectionString"])
           .WithSerializerOptions(new CosmosSerializationOptions
             {PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase})
@@ -41,7 +40,6 @@ namespace WebApi {
       services.AddScoped<ICurrentTenantProvider, CurrentTenantProvider>();
     }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
       if (env.IsDevelopment()) {
         app.UseDeveloperExceptionPage();
