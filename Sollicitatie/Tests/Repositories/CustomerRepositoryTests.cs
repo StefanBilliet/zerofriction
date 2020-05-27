@@ -1,13 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using AutoFixture;
 using AutoFixture.Xunit2;
 using Data;
 using Data.Repositories;
 using Domain;
+using Domain.Exceptions;
 using Domain.State;
 using FakeItEasy;
 using Infrastructure;
 using Microsoft.Azure.Cosmos;
 using Tests.Infrastructure;
+using Tests.Infrastructure.CosmosDbTestingUtilities;
 using Xunit;
 
 namespace Tests.Repositories {
@@ -15,11 +19,34 @@ namespace Tests.Repositories {
     private readonly IDbContext _dbContext;
     private readonly CustomerRepository _sut;
     private readonly ICurrentTenantProvider _currentTenantProvider;
+    private readonly Fixture _fixture;
 
     public CustomerRepositoryTests() {
       _dbContext = A.Fake<IDbContext>();
       _currentTenantProvider = new CurrentTenantProvider();
-      _sut = new CustomerRepository(_dbContext, _currentTenantProvider);
+      _sut = new CustomerRepository(_dbContext, _currentTenantProvider, new DummyLinqQuery());
+      _fixture = new Fixture();
+    }
+
+    [Theory, AutoData]
+    public async Task GIVEN_no_customer_with_id_WHEN_Get_THEN_throws(Guid customerId) {
+      A.CallTo(() => _dbContext.Customers).Returns(ContainerFactory.FakeContainer(new CustomerState[0]));
+
+      await Assert.ThrowsAsync<AggregateNotFoundException<Customer>>(() => _sut.Get(customerId));
+    }
+    
+    [Fact]
+    public async Task GIVEN_customer_with_id_WHEN_Get_THEN_returns_customer() {
+      var expectedCustomerState = _fixture.Build<CustomerState>()
+        .With(_ => _.TenantId, _currentTenantProvider.Get())
+        .Create();
+      A.CallTo(() => _dbContext.Customers).Returns(ContainerFactory.FakeContainer(new []{expectedCustomerState}));
+
+      var customer = await _sut.Get(expectedCustomerState.Id);
+
+      var actualCustomerState = customer.Deflate();
+      actualCustomerState.TenantId = _currentTenantProvider.Get();
+      AssertEx.Equal(expectedCustomerState, actualCustomerState);
     }
 
     [Theory, AutoData]

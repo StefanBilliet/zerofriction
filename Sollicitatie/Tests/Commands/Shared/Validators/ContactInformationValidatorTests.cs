@@ -1,6 +1,5 @@
 using FluentValidation;
 using FluentValidation.TestHelper;
-using WebApi.Commands.CreateCustomer.Contracts;
 using WebApi.Commands.Shared.Contracts;
 using WebApi.Commands.Shared.Validators;
 using Xunit;

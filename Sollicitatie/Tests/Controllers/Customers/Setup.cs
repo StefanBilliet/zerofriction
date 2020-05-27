@@ -2,7 +2,7 @@ using Data.DataServices;
 using FakeItEasy;
 using WebApi.Commands;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
-using WebApi.Commands.CreateCustomer.Contracts;
+using WebApi.Commands.AddCustomer.Contracts;
 using WebApi.Commands.Shared;
 using WebApi.Controllers;
 

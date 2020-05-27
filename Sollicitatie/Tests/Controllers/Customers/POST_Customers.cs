@@ -4,7 +4,7 @@ using FakeItEasy;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Commands.CreateCustomer.Contracts;
+using WebApi.Commands.AddCustomer.Contracts;
 using Xunit;
 
 namespace Tests.Controllers.Customers {

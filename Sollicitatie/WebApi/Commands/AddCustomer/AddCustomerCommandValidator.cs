@@ -1,8 +1,8 @@
 using FluentValidation;
-using WebApi.Commands.CreateCustomer.Contracts;
+using WebApi.Commands.AddCustomer.Contracts;
 using WebApi.Commands.Shared.Validators;
 
-namespace WebApi.Commands.CreateCustomer {
+namespace WebApi.Commands.AddCustomer {
   public class AddCustomerCommandValidator : AbstractValidator<AddCustomerCommand> {
     public AddCustomerCommandValidator() {
       RuleFor(_ => _.FirstName).NotEmpty();

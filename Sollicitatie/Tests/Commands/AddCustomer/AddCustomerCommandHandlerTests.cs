@@ -1,24 +1,26 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture;
+using Data.Repositories;
+using Domain;
 using Domain.State;
+using FakeItEasy;
 using FluentValidation;
-using Tests.Commands.Fakes;
 using Tests.Infrastructure;
-using WebApi.Commands.CreateCustomer;
-using WebApi.Commands.CreateCustomer.Contracts;
+using WebApi.Commands.AddCustomer;
+using WebApi.Commands.AddCustomer.Contracts;
 using Xunit;
 using ContactInformation = WebApi.Commands.Shared.Contracts.ContactInformation;
 using ContactInformationType = WebApi.Commands.Shared.Contracts.ContactInformationType;
 
-namespace Tests.Commands.CreateCustomer {
+namespace Tests.Commands.AddCustomer {
   public class AddCustomerCommandHandlerTests {
-    private readonly DummyCustomerRepository _customerRepository;
+    private readonly ICustomerRepository _customerRepository;
     private readonly AddCustomerCommandHandler _sut;
     private readonly Fixture _fixture;
 
     public AddCustomerCommandHandlerTests() {
-      _customerRepository = new DummyCustomerRepository();
+      _customerRepository = A.Fake<ICustomerRepository>();
       _sut = new AddCustomerCommandHandler(new AddCustomerCommandValidator(), _customerRepository);
       _fixture = new Fixture();
     }
@@ -44,6 +46,8 @@ namespace Tests.Commands.CreateCustomer {
           }
         })
         .Create();
+      Customer? changedCustomer = null;
+      A.CallTo(() => _customerRepository.Upsert(A<Customer>._)).Invokes(call => changedCustomer = (Customer) call.Arguments[0]!);
 
       await _sut.Handle(command);
       
@@ -61,7 +65,7 @@ namespace Tests.Commands.CreateCustomer {
           Type = (Domain.State.ContactInformationType) _.Type,
           Value = _.Value
         }).ToArray()
-      }, _customerRepository.UpsertedCustomer);
+      }, changedCustomer?.Deflate());
     }
   }
 }

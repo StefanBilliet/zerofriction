@@ -5,7 +5,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Commands;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
-using WebApi.Commands.CreateCustomer.Contracts;
+using WebApi.Commands.AddCustomer.Contracts;
 using WebApi.Commands.Shared;
 
 namespace WebApi.Controllers {

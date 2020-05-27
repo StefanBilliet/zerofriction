@@ -33,4 +33,5 @@ public void $FactMethod$() {
 public void $FactMethodName$() {
   $END$
 }</s:String>
-	<s:Boolean x:Key="/Default/UserDictionary/Words/=Upsert/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Upsert/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=upserted/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

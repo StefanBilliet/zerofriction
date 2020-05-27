@@ -6,7 +6,6 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
-using WebApi.Commands.CreateCustomer.Contracts;
 using Xunit;
 
 namespace Tests.Controllers.Customers {

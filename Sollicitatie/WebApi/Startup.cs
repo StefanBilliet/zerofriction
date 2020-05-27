@@ -14,8 +14,8 @@ using Shared;
 using WebApi.Commands;
 using WebApi.Commands.AddContactDetailsForCustomer;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
-using WebApi.Commands.CreateCustomer;
-using WebApi.Commands.CreateCustomer.Contracts;
+using WebApi.Commands.AddCustomer;
+using WebApi.Commands.AddCustomer.Contracts;
 using WebApi.Commands.Shared;
 
 namespace WebApi {
@@ -32,8 +32,10 @@ namespace WebApi {
       services.AddTransient<ICommandHandler<AddCustomerCommand>, AddCustomerCommandHandler>();
       services.AddTransient<ICommandHandler<AddContactDetailsForCustomerCommand>, AddContactDetailsForCustomerCommandHandler>();
       services.AddTransient<IValidator<AddCustomerCommand>, AddCustomerCommandValidator>();
+      services.AddTransient<IValidator<AddContactDetailsForCustomerCommand>, AddContactDetailsForCustomerCommandValidator>();
       services.AddTransient<ICustomerRepository, CustomerRepository>();
       services.AddTransient<ICustomerDataService, CustomerDataService>();
+      services.AddTransient<ICosmosLinqQuery, DefaultCosmosLinqQuery>();
       services.AddScoped<IDbContext, DbContext>();
       services.AddSingleton(provider => {
         var configurationRoot = provider.GetRequiredService<IConfiguration>();

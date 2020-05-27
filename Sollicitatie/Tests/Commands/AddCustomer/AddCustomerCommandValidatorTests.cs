@@ -1,11 +1,11 @@
 using FluentValidation;
 using FluentValidation.TestHelper;
-using WebApi.Commands.CreateCustomer;
-using WebApi.Commands.CreateCustomer.Contracts;
+using WebApi.Commands.AddCustomer;
+using WebApi.Commands.AddCustomer.Contracts;
 using WebApi.Commands.Shared.Validators;
 using Xunit;
 
-namespace Tests.Commands.CreateCustomer {
+namespace Tests.Commands.AddCustomer {
   public class AddCustomerCommandValidatorTests {
     private readonly IValidator<AddCustomerCommand> _sut;
 

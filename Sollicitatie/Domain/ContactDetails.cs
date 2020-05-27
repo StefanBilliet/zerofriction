@@ -1,17 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Domain.Shared;
 
 namespace Domain {
   public class ContactDetails : ValueObject<ContactDetails> {
-    public IReadOnlyCollection<ContactInformation> ContactInformation { get; }
+    private readonly List<ContactInformation> _contactInformation;
+    public IReadOnlyCollection<ContactInformation> ContactInformation => _contactInformation;
 
     public ContactDetails(ContactInformation[] contactInformation) {
-      ContactInformation = contactInformation ?? throw new ArgumentNullException(nameof(contactInformation));
+      _contactInformation = contactInformation.ToList() ?? throw new ArgumentNullException(nameof(contactInformation));
     }
     
     protected override IEnumerable<object> GetEqualityComponents() {
       yield return ContactInformation;
+    }
+
+    public void AddContactInformation(ContactInformation contactInformation) {
+      _contactInformation.Add(contactInformation);
     }
   }
 }

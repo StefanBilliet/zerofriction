@@ -34,5 +34,9 @@ namespace Domain {
         }).ToArray()
       };
     }
+
+    public void AddContactInformation(ContactInformation contactInformation) {
+      _contactDetails.AddContactInformation(contactInformation);
+    }
   }
 }
