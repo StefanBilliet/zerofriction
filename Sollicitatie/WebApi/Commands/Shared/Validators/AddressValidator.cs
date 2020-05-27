@@ -6,6 +6,7 @@ namespace WebApi.Commands.Shared.Validators {
     public AddressValidator() {
       RuleFor(_ => _.Street).NotEmpty();
       RuleFor(_ => _.NumberAndSuffix).NotEmpty();
+      RuleFor(_ => _.City).NotEmpty();
       RuleFor(_ => _.Area).NotEmpty();
       RuleFor(_ => _.AreaCode).NotEmpty();
     }

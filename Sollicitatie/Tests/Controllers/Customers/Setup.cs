@@ -1,6 +1,5 @@
 using Data.DataServices;
 using FakeItEasy;
-using WebApi.Commands;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
 using WebApi.Commands.AddCustomer.Contracts;
 using WebApi.Commands.Shared;

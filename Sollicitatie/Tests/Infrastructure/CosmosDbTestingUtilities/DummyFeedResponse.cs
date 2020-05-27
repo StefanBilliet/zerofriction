@@ -8,11 +8,11 @@ namespace Tests.Infrastructure.CosmosDbTestingUtilities {
   public class DummyFeedResponse<T> : FeedResponse<T> {
     private readonly IEnumerable<T> _items;
 
-    public override Headers Headers { get; }
+    public override Headers? Headers { get; }
     public override IEnumerable<T> Resource => _items;
     public override HttpStatusCode StatusCode { get; }
-    public override CosmosDiagnostics Diagnostics { get; } 
-    public override string ContinuationToken { get; }
+    public override CosmosDiagnostics? Diagnostics { get; } 
+    public override string? ContinuationToken { get; }
     public override int Count => _items.Count();
 
     public DummyFeedResponse(IEnumerable<T> items) {

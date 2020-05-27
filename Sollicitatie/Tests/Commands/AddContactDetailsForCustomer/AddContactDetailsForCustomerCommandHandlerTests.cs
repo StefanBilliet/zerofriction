@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using AutoFixture;
 using Data.Repositories;
 using Domain;
-using Domain.State;
 using FakeItEasy;
 using FluentValidation;
 using Tests.Infrastructure;
@@ -51,31 +50,22 @@ namespace Tests.Commands.AddContactDetailsForCustomer {
       var customer = new Customer(
         command.Id,
         new Name("Joske", "Vermeulen"),
-        new Address("Korenmarkt", "1A", "9000", "Oost-Vlaanderen"),
+        new Address("Korenmarkt", "1A", "Gent", "9000", "Oost-Vlaanderen"),
         new ContactDetails(new Domain.ContactInformation[0])
       );
       A.CallTo(() => _customerRepository.Get(command.Id)).Returns(customer);
       Customer? changedCustomer = null;
-      A.CallTo(() => _customerRepository.Upsert(A<Customer>._)).Invokes(call => changedCustomer = (Customer) call.Arguments[0]!);
+      A.CallTo(() => _customerRepository.Upsert(A<Customer>._))
+        .Invokes(call => changedCustomer = (Customer) call.Arguments[0]!);
 
       await _sut.Handle(command);
-      
-      AssertEx.Equal(new CustomerState {
-        Id = command.Id,
-        FirstName = "Joske",
-        SurName = "Vermeulen",
-        Address = new Domain.State.Address {
-          Street = "Korenmarkt",
-          NumberAndSuffix = "1A",
-          Area = "Oost-Vlaanderen",
-          AreaCode = "9000"
-        },
-        ContactDetails = new []{
-          new Domain.State.ContactInformation {
+
+      AssertEx.Equal(new[] {
+        new Domain.State.ContactInformation {
           Type = (Domain.State.ContactInformationType) command.ContactInformation.Type,
           Value = command.ContactInformation.Value
-        }}
-      }, changedCustomer?.Deflate());
+        }
+      }, changedCustomer?.Deflate().ContactDetails);
     }
   }
 }

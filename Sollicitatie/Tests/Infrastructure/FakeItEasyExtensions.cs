@@ -1,4 +1,3 @@
-using Data;
 using FakeItEasy;
 using KellermanSoftware.CompareNetObjects;
 

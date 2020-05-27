@@ -58,6 +58,7 @@ namespace Tests.Commands.AddCustomer {
         Address = new Domain.State.Address {
           Street = command.Address.Street,
           NumberAndSuffix = command.Address.NumberAndSuffix,
+          City = command.Address.City,
           Area = command.Address.Area,
           AreaCode = command.Address.AreaCode
         },

@@ -10,8 +10,6 @@ using Microsoft.Azure.Cosmos.Fluent;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Shared;
-using WebApi.Commands;
 using WebApi.Commands.AddContactDetailsForCustomer;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
 using WebApi.Commands.AddCustomer;

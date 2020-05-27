@@ -48,6 +48,7 @@ namespace Data.Repositories {
       var address = new Domain.Address(
         customerState.Address.Street,
         customerState.Address.NumberAndSuffix,
+        customerState.Address.City,
         customerState.Address.AreaCode,
         customerState.Address.Area
       );

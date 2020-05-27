@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Data.DataServices;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Commands;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
 using WebApi.Commands.AddCustomer.Contracts;
 using WebApi.Commands.Shared;

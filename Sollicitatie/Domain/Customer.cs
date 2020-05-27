@@ -25,6 +25,7 @@ namespace Domain {
         Address = new State.Address {
           Street = _address.Street,
           NumberAndSuffix = _address.NumberAndSuffix,
+          City = _address.City,
           Area = _address.Area,
           AreaCode = _address.AreaCode
         },

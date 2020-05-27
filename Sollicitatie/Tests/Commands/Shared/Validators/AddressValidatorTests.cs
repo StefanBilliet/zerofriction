@@ -48,6 +48,21 @@ namespace Tests.Commands.Shared.Validators {
     }
     
     [Fact]
+    public void Null_city_fails() {
+      _sut.ShouldHaveValidationErrorFor(_ => _.City, default(string));
+    }
+    
+    [Fact]
+    public void Empty_city_fails() {
+      _sut.ShouldHaveValidationErrorFor(_ => _.City, "");
+    }
+    
+    [Fact]
+    public void Non_empty_city_passes() {
+      _sut.ShouldNotHaveValidationErrorFor(_ => _.City, "Gent");
+    }
+    
+    [Fact]
     public void Null_AreaCode_fails() {
       _sut.ShouldHaveValidationErrorFor(_ => _.AreaCode, default(string));
     }
