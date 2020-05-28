@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Domain.Shared;
 
-namespace Domain {
+namespace Domain.Customers {
   public class Name : ValueObject<Name> {
     public string FirstName { get; }
     public string SurName { get; }

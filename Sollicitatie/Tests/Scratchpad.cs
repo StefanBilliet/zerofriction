@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Domain.State;
+using Domain.Customers.State;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Fluent;
 using Xunit;

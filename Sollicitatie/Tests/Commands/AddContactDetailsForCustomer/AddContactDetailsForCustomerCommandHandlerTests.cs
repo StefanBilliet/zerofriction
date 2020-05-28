@@ -2,13 +2,14 @@ using System.Threading.Tasks;
 using AutoFixture;
 using Data.Repositories;
 using Domain;
+using Domain.Customers;
 using FakeItEasy;
 using FluentValidation;
 using Tests.TestingUtilities;
 using WebApi.Commands.AddContactDetailsForCustomer;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
 using Xunit;
-using Address = Domain.Address;
+using Address = Domain.Customers.Address;
 using ContactInformation = WebApi.Commands.Shared.Contracts.ContactInformation;
 using ContactInformationType = WebApi.Commands.Shared.Contracts.ContactInformationType;
 
@@ -51,7 +52,7 @@ namespace Tests.Commands.AddContactDetailsForCustomer {
         command.Id,
         new Name("Joske", "Vermeulen"),
         new Address("Korenmarkt", "1A", "Gent", "9000", "Oost-Vlaanderen"),
-        new ContactDetails(new Domain.ContactInformation[0])
+        new ContactDetails(new Domain.Customers.ContactInformation[0])
       );
       A.CallTo(() => _customerRepository.Get(command.Id)).Returns(customer);
 
@@ -60,8 +61,8 @@ namespace Tests.Commands.AddContactDetailsForCustomer {
       A.CallTo(() => _customerRepository.Upsert(A<Customer>.That.Matches(_ =>
         _.Deflate().ContactDetails.DeepEquals(
           new[] {
-            new Domain.State.ContactInformation {
-              Type = (Domain.State.ContactInformationType) command.ContactInformation.Type,
+            new Domain.Customers.State.ContactInformation {
+              Type = (Domain.Customers.State.ContactInformationType) command.ContactInformation.Type,
               Value = command.ContactInformation.Value
             }
           })))).MustHaveHappened();

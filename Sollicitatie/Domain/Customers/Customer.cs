@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
+using Domain.Customers.State;
 using Domain.Shared;
-using Domain.State;
 
-namespace Domain {
+namespace Domain.Customers {
   public class Customer : AggregateRoot<CustomerState> {
     private readonly Name _name;
     private readonly Address _address;
@@ -29,7 +29,7 @@ namespace Domain {
           Area = _address.Area,
           AreaCode = _address.AreaCode
         },
-        ContactDetails = _contactDetails.ContactInformation.Select(_ => new Domain.State.ContactInformation {
+        ContactDetails = _contactDetails.ContactInformation.Select(_ => new State.ContactInformation {
           Type = (State.ContactInformationType) _.Type,
           Value = _.Value
         }).ToArray()

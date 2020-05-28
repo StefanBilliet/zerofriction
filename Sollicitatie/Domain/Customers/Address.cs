@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Domain.Shared;
 
-namespace Domain {
+namespace Domain.Customers {
   public class Address : ValueObject<Address> {
     public string Street { get;  }
     public string NumberAndSuffix { get; }

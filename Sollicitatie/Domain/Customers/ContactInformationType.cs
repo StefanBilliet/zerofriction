@@ -1,4 +1,4 @@
-namespace Domain.State {
+namespace Domain.Customers {
   public enum ContactInformationType {
     Email,
     CellPhone

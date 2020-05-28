@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Domain.Shared;
 
-namespace Domain {
+namespace Domain.Customers {
   public class ContactDetails : ValueObject<ContactDetails> {
     private readonly List<ContactInformation> _contactInformation;
     public IReadOnlyCollection<ContactInformation> ContactInformation => _contactInformation;

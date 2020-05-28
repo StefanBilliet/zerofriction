@@ -12,6 +12,7 @@ namespace Database {
       await client.CreateDatabaseIfNotExistsAsync("zerofriction");
       var database = client.GetDatabase("zerofriction");
       await database.CreateContainerIfNotExistsAsync("customers", "/tenantId");
+      await database.CreateContainerIfNotExistsAsync("invoices", "/tenantId");
     }
   }
 }

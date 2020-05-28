@@ -3,13 +3,15 @@ using System.Threading.Tasks;
 using AutoFixture;
 using Data.Repositories;
 using Domain;
-using Domain.State;
+using Domain.Customers;
+using Domain.Customers.State;
 using FakeItEasy;
 using FluentValidation;
 using Tests.TestingUtilities;
 using WebApi.Commands.AddCustomer;
 using WebApi.Commands.AddCustomer.Contracts;
 using Xunit;
+using Address = Domain.Customers.State.Address;
 using ContactInformation = WebApi.Commands.Shared.Contracts.ContactInformation;
 using ContactInformationType = WebApi.Commands.Shared.Contracts.ContactInformationType;
 
@@ -53,15 +55,15 @@ namespace Tests.Commands.AddCustomer {
         Id = command.Id,
         FirstName = command.FirstName,
         SurName = command.SurName,
-        Address = new Domain.State.Address {
+        Address = new Address {
           Street = command.Address.Street,
           NumberAndSuffix = command.Address.NumberAndSuffix,
           City = command.Address.City,
           Area = command.Address.Area,
           AreaCode = command.Address.AreaCode
         },
-        ContactDetails = command.ContactDetails.Select(_ => new Domain.State.ContactInformation {
-          Type = (Domain.State.ContactInformationType) _.Type,
+        ContactDetails = command.ContactDetails.Select(_ => new Domain.Customers.State.ContactInformation {
+          Type = (Domain.Customers.State.ContactInformationType) _.Type,
           Value = _.Value
         }).ToArray()
       };

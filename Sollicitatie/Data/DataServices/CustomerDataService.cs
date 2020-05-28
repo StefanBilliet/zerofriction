@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Domain.State;
+using Domain.Customers.State;
 using Infrastructure;
 
 namespace Data.DataServices {

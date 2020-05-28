@@ -4,7 +4,7 @@ using AutoFixture;
 using AutoFixture.Xunit2;
 using Data;
 using Data.DataServices;
-using Domain.State;
+using Domain.Customers.State;
 using FakeItEasy;
 using Infrastructure;
 using Tests.TestingUtilities.CosmosDbTestingUtilities;

@@ -3,12 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Data.Repositories;
 using Domain;
+using Domain.Customers;
 using FluentValidation;
 using WebApi.Commands.AddCustomer.Contracts;
 using WebApi.Commands.Shared;
-using Address = Domain.Address;
-using ContactInformation = Domain.ContactInformation;
-using ContactInformationType = Domain.ContactInformationType;
+using Address = Domain.Customers.Address;
+using ContactInformation = Domain.Customers.ContactInformation;
+using ContactInformationType = Domain.Customers.ContactInformationType;
 
 namespace WebApi.Commands.AddCustomer {
   public class AddCustomerCommandHandler : ICommandHandler<AddCustomerCommand> {

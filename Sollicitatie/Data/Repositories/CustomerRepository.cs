@@ -2,11 +2,14 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Domain.Customers;
+using Domain.Customers.State;
 using Domain.Exceptions;
-using Domain.State;
 using Infrastructure;
 using Microsoft.Azure.Cosmos;
-using ContactInformationType = Domain.ContactInformationType;
+using Address = Domain.Customers.Address;
+using ContactInformation = Domain.Customers.ContactInformation;
+using ContactInformationType = Domain.Customers.ContactInformationType;
 
 namespace Data.Repositories {
   public interface ICustomerRepository {
@@ -45,7 +48,7 @@ namespace Data.Repositories {
       }
 
       var name = new Name(customerState.FirstName, customerState.SurName);
-      var address = new Domain.Address(
+      var address = new Address(
         customerState.Address.Street,
         customerState.Address.NumberAndSuffix,
         customerState.Address.City,
@@ -54,7 +57,7 @@ namespace Data.Repositories {
       );
       var contactDetails = new ContactDetails(
         customerState.ContactDetails
-          .Select(_ => new Domain.ContactInformation((ContactInformationType) _.Type, _.Value)).ToArray()
+          .Select(_ => new ContactInformation((ContactInformationType) _.Type, _.Value)).ToArray()
       );
       return new Customer(id, name, address, contactDetails);
     }
