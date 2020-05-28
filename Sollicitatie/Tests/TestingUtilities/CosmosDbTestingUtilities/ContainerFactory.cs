@@ -2,7 +2,7 @@
 using FakeItEasy;
 using Microsoft.Azure.Cosmos;
 
-namespace Tests.Infrastructure.CosmosDbTestingUtilities {
+namespace Tests.TestingUtilities.CosmosDbTestingUtilities {
   public static class ContainerFactory {
     public static Container FakeContainer<T>(T[] items) {
       var container = A.Fake<Container>();

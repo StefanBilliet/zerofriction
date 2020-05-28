@@ -6,7 +6,7 @@ using Domain;
 using Domain.State;
 using FakeItEasy;
 using FluentValidation;
-using Tests.Infrastructure;
+using Tests.TestingUtilities;
 using WebApi.Commands.AddCustomer;
 using WebApi.Commands.AddCustomer.Contracts;
 using Xunit;
@@ -46,12 +46,10 @@ namespace Tests.Commands.AddCustomer {
           }
         })
         .Create();
-      Customer? changedCustomer = null;
-      A.CallTo(() => _customerRepository.Upsert(A<Customer>._)).Invokes(call => changedCustomer = (Customer) call.Arguments[0]!);
 
       await _sut.Handle(command);
-      
-      AssertEx.Equal(new CustomerState {
+
+      var state = new CustomerState {
         Id = command.Id,
         FirstName = command.FirstName,
         SurName = command.SurName,
@@ -66,7 +64,8 @@ namespace Tests.Commands.AddCustomer {
           Type = (Domain.State.ContactInformationType) _.Type,
           Value = _.Value
         }).ToArray()
-      }, changedCustomer?.Deflate());
+      };
+      A.CallTo(() => _customerRepository.Upsert(A<Customer>.That.HasState(state))).MustHaveHappened();
     }
   }
 }

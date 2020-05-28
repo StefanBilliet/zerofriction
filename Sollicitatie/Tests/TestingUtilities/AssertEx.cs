@@ -1,7 +1,7 @@
 using KellermanSoftware.CompareNetObjects;
 using Xunit;
 
-namespace Tests.Infrastructure {
+namespace Tests.TestingUtilities {
   public static class AssertEx {
     public static void Equal<T>(T expected, T actual) {
       var comparer = new CompareLogic(new ComparisonConfig {

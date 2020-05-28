@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using Microsoft.Azure.Cosmos;
 
-namespace Tests.Infrastructure.CosmosDbTestingUtilities {
+namespace Tests.TestingUtilities.CosmosDbTestingUtilities {
   public class DummyFeedResponse<T> : FeedResponse<T> {
     private readonly IEnumerable<T> _items;
 

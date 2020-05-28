@@ -4,7 +4,7 @@ using Data.Repositories;
 using Domain;
 using FakeItEasy;
 using FluentValidation;
-using Tests.Infrastructure;
+using Tests.TestingUtilities;
 using WebApi.Commands.AddContactDetailsForCustomer;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
 using Xunit;
@@ -54,18 +54,17 @@ namespace Tests.Commands.AddContactDetailsForCustomer {
         new ContactDetails(new Domain.ContactInformation[0])
       );
       A.CallTo(() => _customerRepository.Get(command.Id)).Returns(customer);
-      Customer? changedCustomer = null;
-      A.CallTo(() => _customerRepository.Upsert(A<Customer>._))
-        .Invokes(call => changedCustomer = (Customer) call.Arguments[0]!);
 
       await _sut.Handle(command);
 
-      AssertEx.Equal(new[] {
-        new Domain.State.ContactInformation {
-          Type = (Domain.State.ContactInformationType) command.ContactInformation.Type,
-          Value = command.ContactInformation.Value
-        }
-      }, changedCustomer?.Deflate().ContactDetails);
+      A.CallTo(() => _customerRepository.Upsert(A<Customer>.That.Matches(_ =>
+        _.Deflate().ContactDetails.DeepEquals(
+          new[] {
+            new Domain.State.ContactInformation {
+              Type = (Domain.State.ContactInformationType) command.ContactInformation.Type,
+              Value = command.ContactInformation.Value
+            }
+          })))).MustHaveHappened();
     }
   }
 }

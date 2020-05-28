@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 
-namespace Tests.Infrastructure.CosmosDbTestingUtilities {
+namespace Tests.TestingUtilities.CosmosDbTestingUtilities {
   public class DummyFeedIterator<T> : FeedIterator<T> {
     private readonly ImmutableList<T> _items;
     private int _currentIndex;

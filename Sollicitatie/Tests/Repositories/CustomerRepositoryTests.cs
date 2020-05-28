@@ -10,8 +10,8 @@ using Domain.State;
 using FakeItEasy;
 using Infrastructure;
 using Microsoft.Azure.Cosmos;
-using Tests.Infrastructure;
-using Tests.Infrastructure.CosmosDbTestingUtilities;
+using Tests.TestingUtilities;
+using Tests.TestingUtilities.CosmosDbTestingUtilities;
 using Xunit;
 
 namespace Tests.Repositories {

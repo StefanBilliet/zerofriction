@@ -7,7 +7,7 @@ using Data.DataServices;
 using Domain.State;
 using FakeItEasy;
 using Infrastructure;
-using Tests.Infrastructure.CosmosDbTestingUtilities;
+using Tests.TestingUtilities.CosmosDbTestingUtilities;
 using Xunit;
 
 namespace Tests.DataServices {
