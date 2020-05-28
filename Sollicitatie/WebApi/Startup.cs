@@ -14,6 +14,8 @@ using WebApi.Commands.AddContactDetailsForCustomer;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
 using WebApi.Commands.AddCustomer;
 using WebApi.Commands.AddCustomer.Contracts;
+using WebApi.Commands.InvoiceCustomer;
+using WebApi.Commands.InvoiceCustomer.Contracts;
 using WebApi.Commands.Shared;
 
 namespace WebApi {
@@ -31,6 +33,7 @@ namespace WebApi {
       services.AddTransient<ICommandHandler<AddContactDetailsForCustomerCommand>, AddContactDetailsForCustomerCommandHandler>();
       services.AddTransient<IValidator<AddCustomerCommand>, AddCustomerCommandValidator>();
       services.AddTransient<IValidator<AddContactDetailsForCustomerCommand>, AddContactDetailsForCustomerCommandValidator>();
+      services.AddTransient<IValidator<InvoiceCustomerCommand>, InvoiceCustomerCommandValidator>();
       services.AddTransient<ICustomerRepository, CustomerRepository>();
       services.AddTransient<ICustomerDataService, CustomerDataService>();
       services.AddTransient<ICosmosLinqQuery, DefaultCosmosLinqQuery>();
