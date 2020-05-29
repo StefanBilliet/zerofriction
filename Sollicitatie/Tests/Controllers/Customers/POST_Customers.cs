@@ -10,7 +10,7 @@ using Xunit;
 namespace Tests.Controllers.Customers {
   public partial class CustomersControllerTests {
     [Theory, AutoData]
-    public async Task WHEN_POST_customer_with_invalid_command_THEN_returns_BadRequest(AddCustomerCommand command) {
+    public async Task WHEN_CreateCustomer_with_invalid_command_THEN_returns_BadRequest(AddCustomerCommand command) {
       var validationFailures = new []{new ValidationFailure(nameof(AddCustomerCommand.FirstName), "required") };
       A.CallTo(() => _addCustomerCommandHandler.Handle(command)).Throws(new ValidationException(validationFailures));
       
@@ -21,7 +21,7 @@ namespace Tests.Controllers.Customers {
     }
     
     [Theory, AutoData]
-    public async Task WHEN_POST_customer_with_valid_command_THEN_adds_new_customer_and_returns_NoContent(AddCustomerCommand command) {
+    public async Task WHEN_CreateCustomer_with_valid_command_THEN_adds_new_customer_and_returns_NoContent(AddCustomerCommand command) {
       var result = await _sut.CreateCustomer(command);
 
       Assert.IsType<NoContentResult>(result);
