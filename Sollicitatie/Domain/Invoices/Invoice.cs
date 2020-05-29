@@ -11,12 +11,14 @@ namespace Domain.Invoices {
     private readonly Guid _customerId;
     private readonly decimal _totalAmount;
     private readonly List<InvoiceLine> _invoiceLines;
+    private InvoiceStatus _status;
 
-    public Invoice(Guid id, string description, DateTimeOffset date, Guid customerId, decimal totalAmount, InvoiceLine[] invoiceLines) {
+    public Invoice(Guid id, string description, DateTimeOffset date, Guid customerId, decimal totalAmount, InvoiceLine[] invoiceLines, InvoiceStatus status) {
       _description = description ?? throw new ArgumentNullException(nameof(description));
       _date = date;
       _customerId = customerId;
       _totalAmount = totalAmount;
+      _status = status;
       _invoiceLines = invoiceLines.ToList() ?? throw new ArgumentNullException(nameof(invoiceLines));
       Id = id;
     }
@@ -34,6 +36,10 @@ namespace Domain.Invoices {
           PricePerUnit = _.PricePerUnit
         }).ToArray()
       };
+    }
+
+    public static Invoice Draft(Guid id, string description, DateTimeOffset date, Guid customerId, decimal totalAmount, InvoiceLine[] invoiceLines) {
+      return new Invoice(id, description, date, customerId, totalAmount, invoiceLines, InvoiceStatus.Draft);
     }
   }
 }

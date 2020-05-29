@@ -12,5 +12,6 @@ namespace Domain.Invoices.State {
     public InvoiceLine[] InvoiceLines { get; set; } = new InvoiceLine[0];
     public decimal TotalAmount { get; set; }
     public string TenantId { get; set; } = "";
+    public InvoiceStatus Status { get; set; }
   }
 }

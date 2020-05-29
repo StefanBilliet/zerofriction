@@ -22,7 +22,7 @@ namespace WebApi.Commands.InvoiceCustomer {
       await _validator.ValidateAndThrowAsync(command);
 
       var invoiceLines = command.InvoiceLines.Select(_ => new InvoiceLine(_.Quantity, _.PricePerUnit, _.TotalAmount)).ToArray();
-      var invoice = new Invoice(command.Id, command.Description, command.Date, command.CustomerId, command.TotalAmount, invoiceLines);
+      var invoice = Invoice.Draft(command.Id, command.Description, command.Date, command.CustomerId, command.TotalAmount, invoiceLines);
 
       await _invoiceRepository.Upsert(invoice);
     }

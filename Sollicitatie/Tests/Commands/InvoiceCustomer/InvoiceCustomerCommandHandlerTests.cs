@@ -36,7 +36,7 @@ namespace Tests.Commands.InvoiceCustomer {
     }
 
     [Fact]
-    public async Task GIVEN_valid_command_WHEN_Handle_THEN_invoices_customer() {
+    public async Task GIVEN_valid_command_WHEN_Handle_THEN_creates_a_draft_invoice_for_the_customer() {
       var command = _fixture
         .Build<InvoiceCustomerCommand>()
         .With(_ => _.InvoiceLines, new [] {
@@ -60,7 +60,8 @@ namespace Tests.Commands.InvoiceCustomer {
           Quantity = _.Quantity,
           TotalAmount = _.TotalAmount,
           PricePerUnit = _.PricePerUnit
-        }).ToArray()
+        }).ToArray(),
+        Status = Domain.Invoices.State.InvoiceStatus.Draft
       };
       A.CallTo(() => _invoiceRepository.Upsert(A<Invoice>.That.HasState(state))).MustHaveHappened();
     }
