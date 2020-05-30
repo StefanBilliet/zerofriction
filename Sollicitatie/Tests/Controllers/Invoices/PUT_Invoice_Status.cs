@@ -3,7 +3,7 @@ using AutoFixture.Xunit2;
 using Domain.Exceptions;
 using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Commands.InvoiceCustomer.Contracts;
+using WebApi.Commands.ChangeInvoiceStatus.Contracts;
 using Xunit;
 
 namespace Tests.Controllers.Invoices {

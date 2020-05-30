@@ -1,5 +1,6 @@
 ﻿using Data.DataServices;
 using FakeItEasy;
+using WebApi.Commands.ChangeInvoiceStatus.Contracts;
 using WebApi.Commands.InvoiceCustomer.Contracts;
 using WebApi.Commands.Shared;
 using WebApi.Controllers;

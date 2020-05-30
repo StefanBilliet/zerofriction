@@ -4,6 +4,7 @@ using Data.DataServices;
 using Domain.Exceptions;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Commands.ChangeInvoiceStatus.Contracts;
 using WebApi.Commands.InvoiceCustomer.Contracts;
 using WebApi.Commands.Shared;
 

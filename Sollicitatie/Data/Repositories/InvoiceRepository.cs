@@ -7,6 +7,7 @@ using Microsoft.Azure.Cosmos;
 namespace Data.Repositories {
   public interface IInvoiceRepository {
     Task Upsert(Invoice invoice);
+    Task<Invoice> Get(Guid invoiceId);
   }
 
   public class InvoiceRepository : IInvoiceRepository {
@@ -25,6 +26,10 @@ namespace Data.Repositories {
       invoiceState.TenantId = _currentTenantProvider.Get();
 
       return _dbContext.Invoices.UpsertItemAsync(invoiceState, new PartitionKey(_currentTenantProvider.Get()));
+    }
+
+    public Task<Invoice> Get(Guid invoiceId) {
+      throw new NotImplementedException();
     }
   }
 }

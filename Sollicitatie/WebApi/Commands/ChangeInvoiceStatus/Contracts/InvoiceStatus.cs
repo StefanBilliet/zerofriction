@@ -1,4 +1,4 @@
-﻿namespace WebApi.Commands.InvoiceCustomer.Contracts {
+﻿namespace WebApi.Commands.ChangeInvoiceStatus.Contracts {
   public enum InvoiceStatus {
     Draft,
     Sent,
