@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Data.Repositories;
+using Domain.Invoices;
 using WebApi.Commands.ChangeInvoiceStatus.Contracts;
 using WebApi.Commands.Shared;
 

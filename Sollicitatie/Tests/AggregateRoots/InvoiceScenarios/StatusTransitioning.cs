@@ -9,7 +9,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
     public class FromDraft {
       [Theory]
       [MemberData(nameof(ValidTransitionsFromDraft))]
-      public void GIVEN_draft_invoice_WHEN_transitioning_to_valid_status_THEN_changes_status_of_invoice(Action<Invoice> statusTransition, Domain.Invoices.State.InvoiceStatus expectedStatus) {
+      public void GIVEN_draft_invoice_WHEN_transitioning_to_valid_status_THEN_changes_status_of_invoice(Action<Invoice> statusTransition, InvoiceStatus expectedStatus) {
         var invoice = Invoice(InvoiceStatus.Draft);
 
         statusTransition(invoice);
@@ -20,19 +20,19 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
       public static IEnumerable<object[]> ValidTransitionsFromDraft() {
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.MarkAsSent()),
-          Domain.Invoices.State.InvoiceStatus.Sent
+          InvoiceStatus.Sent
         };
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.MarkAsPartiallyPaid()),
-          Domain.Invoices.State.InvoiceStatus.PartiallyPaid
+          InvoiceStatus.PartiallyPaid
         };
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.MarkAsPaidInFull()),
-          Domain.Invoices.State.InvoiceStatus.PaidInFull
+          InvoiceStatus.PaidInFull
         };
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.Cancel()),
-          Domain.Invoices.State.InvoiceStatus.Canceled
+          InvoiceStatus.Canceled
         };
       }
     
@@ -42,7 +42,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
         var invoice = Invoice(InvoiceStatus.Draft);
 
         Assert.Throws<IllegalInvoiceStatusTransitionException>(() => statusTransition(invoice));
-        Assert.Equal(Domain.Invoices.State.InvoiceStatus.Draft, invoice.Deflate().Status);
+        Assert.Equal(InvoiceStatus.Draft, invoice.Deflate().Status);
       }
     
       public static IEnumerable<object[]> InvalidTransitionsFromDraft() {
@@ -55,7 +55,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
     public class FromSent {
       [Theory]
       [MemberData(nameof(ValidTransitionsFromSent))]
-      public void GIVEN_sent_invoice_WHEN_transitioning_to_valid_status_THEN_changes_status_of_invoice(Action<Invoice> statusTransition, Domain.Invoices.State.InvoiceStatus expectedStatus) {
+      public void GIVEN_sent_invoice_WHEN_transitioning_to_valid_status_THEN_changes_status_of_invoice(Action<Invoice> statusTransition, InvoiceStatus expectedStatus) {
         var invoice = Invoice(InvoiceStatus.Sent);
 
         statusTransition(invoice);
@@ -66,19 +66,19 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
       public static IEnumerable<object[]> ValidTransitionsFromSent() {
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.MarkAsPartiallyPaid()),
-          Domain.Invoices.State.InvoiceStatus.PartiallyPaid
+          InvoiceStatus.PartiallyPaid
         };
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.MarkAsPaidInFull()),
-          Domain.Invoices.State.InvoiceStatus.PaidInFull
+          InvoiceStatus.PaidInFull
         };
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.MarkAsOverdue()),
-          Domain.Invoices.State.InvoiceStatus.Overdue
+          InvoiceStatus.Overdue
         };
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.Cancel()),
-          Domain.Invoices.State.InvoiceStatus.Canceled
+          InvoiceStatus.Canceled
         };
       }
     }
@@ -86,7 +86,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
     public class FromPartiallyPaid {
       [Theory]
       [MemberData(nameof(ValidTransitionsFromPartiallyPaid))]
-      public void GIVEN_partially_paid_invoice_WHEN_transitioning_to_valid_status_THEN_changes_status_of_invoice(Action<Invoice> statusTransition, Domain.Invoices.State.InvoiceStatus expectedStatus) {
+      public void GIVEN_partially_paid_invoice_WHEN_transitioning_to_valid_status_THEN_changes_status_of_invoice(Action<Invoice> statusTransition, InvoiceStatus expectedStatus) {
         var invoice = Invoice(InvoiceStatus.PartiallyPaid);
 
         statusTransition(invoice);
@@ -97,15 +97,15 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
       public static IEnumerable<object[]> ValidTransitionsFromPartiallyPaid() {
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.MarkAsPaidInFull()),
-          Domain.Invoices.State.InvoiceStatus.PaidInFull
+          InvoiceStatus.PaidInFull
         };
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.MarkAsOverdue()),
-          Domain.Invoices.State.InvoiceStatus.Overdue
+          InvoiceStatus.Overdue
         };
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.Cancel()),
-          Domain.Invoices.State.InvoiceStatus.Canceled
+          InvoiceStatus.Canceled
         };
       }
     
@@ -115,7 +115,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
         var invoice = Invoice(InvoiceStatus.PartiallyPaid);
 
         Assert.Throws<IllegalInvoiceStatusTransitionException>(() => statusTransition(invoice));
-        Assert.Equal(Domain.Invoices.State.InvoiceStatus.PartiallyPaid, invoice.Deflate().Status);
+        Assert.Equal(InvoiceStatus.PartiallyPaid, invoice.Deflate().Status);
       }
     
       public static IEnumerable<object[]> InvalidTransitionsFromPartiallyPaid() {
@@ -128,7 +128,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
     public class FromPaidInFull {
       [Theory]
       [MemberData(nameof(ValidTransitionsFromPaidInFull))]
-      public void GIVEN_fully_paid_invoice_WHEN_transitioning_to_valid_status_THEN_changes_status_of_invoice(Action<Invoice> statusTransition, Domain.Invoices.State.InvoiceStatus expectedStatus) {
+      public void GIVEN_fully_paid_invoice_WHEN_transitioning_to_valid_status_THEN_changes_status_of_invoice(Action<Invoice> statusTransition, InvoiceStatus expectedStatus) {
         var invoice = Invoice(InvoiceStatus.PaidInFull);
 
         statusTransition(invoice);
@@ -139,7 +139,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
       public static IEnumerable<object[]> ValidTransitionsFromPaidInFull() {
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.Cancel()),
-          Domain.Invoices.State.InvoiceStatus.Canceled
+          InvoiceStatus.Canceled
         };
       }
     
@@ -149,7 +149,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
         var invoice = Invoice(InvoiceStatus.PaidInFull);
 
         Assert.Throws<IllegalInvoiceStatusTransitionException>(() => statusTransition(invoice));
-        Assert.Equal(Domain.Invoices.State.InvoiceStatus.PaidInFull, invoice.Deflate().Status);
+        Assert.Equal(InvoiceStatus.PaidInFull, invoice.Deflate().Status);
       }
     
       public static IEnumerable<object[]> InvalidTransitionsFromPaidInFull() {
@@ -168,7 +168,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
     public class FromOverdue {
       [Theory]
       [MemberData(nameof(ValidTransitionsFromOverdue))]
-      public void GIVEN_overdue_invoice_WHEN_transitioning_to_valid_status_THEN_changes_status_of_invoice(Action<Invoice> statusTransition, Domain.Invoices.State.InvoiceStatus expectedStatus) {
+      public void GIVEN_overdue_invoice_WHEN_transitioning_to_valid_status_THEN_changes_status_of_invoice(Action<Invoice> statusTransition, InvoiceStatus expectedStatus) {
         var invoice = Invoice(InvoiceStatus.Overdue);
 
         statusTransition(invoice);
@@ -179,11 +179,11 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
       public static IEnumerable<object[]> ValidTransitionsFromOverdue() {
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.MarkAsPaidInFull()),
-          Domain.Invoices.State.InvoiceStatus.PaidInFull
+          InvoiceStatus.PaidInFull
         };
         yield return new object[] {
           new Action<Invoice>(invoice => invoice.Cancel()),
-          Domain.Invoices.State.InvoiceStatus.Canceled
+          InvoiceStatus.Canceled
         };
       }
     
@@ -193,7 +193,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
         var invoice = Invoice(InvoiceStatus.Overdue);
 
         Assert.Throws<IllegalInvoiceStatusTransitionException>(() => statusTransition(invoice));
-        Assert.Equal(Domain.Invoices.State.InvoiceStatus.Overdue, invoice.Deflate().Status);
+        Assert.Equal(InvoiceStatus.Overdue, invoice.Deflate().Status);
       }
     
       public static IEnumerable<object[]> InvalidTransitionsFromOverdue() {
@@ -213,7 +213,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
         var invoice = Invoice(InvoiceStatus.Canceled);
 
         Assert.Throws<IllegalInvoiceStatusTransitionException>(() => statusTransition(invoice));
-        Assert.Equal(Domain.Invoices.State.InvoiceStatus.Canceled, invoice.Deflate().Status);
+        Assert.Equal(InvoiceStatus.Canceled, invoice.Deflate().Status);
       }
     
       public static IEnumerable<object[]> InvalidTransitionsFromCancelled() {

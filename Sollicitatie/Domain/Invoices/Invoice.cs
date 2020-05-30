@@ -36,7 +36,7 @@ namespace Domain.Invoices {
           TotalAmount = _.TotalAmount,
           PricePerUnit = _.PricePerUnit
         }).ToArray(),
-        Status = (State.InvoiceStatus) _status
+        Status = _status
       };
     }
 

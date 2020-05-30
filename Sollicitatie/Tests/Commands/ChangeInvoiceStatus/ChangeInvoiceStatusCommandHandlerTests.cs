@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoFixture;
-using AutoFixture.Xunit2;
 using Data.Repositories;
 using Domain.Invoices;
 using FakeItEasy;
-using Tests.TestingUtilities;
 using WebApi.Commands.ChangeInvoiceStatus;
 using WebApi.Commands.ChangeInvoiceStatus.Contracts;
 using WebApi.Commands.Shared;
 using Xunit;
-using InvoiceStatus = WebApi.Commands.ChangeInvoiceStatus.Contracts.InvoiceStatus;
 
 namespace Tests.Commands.ChangeInvoiceStatus {
   public class ChangeInvoiceStatusCommandHandlerTests {
@@ -25,12 +22,12 @@ namespace Tests.Commands.ChangeInvoiceStatus {
     }
 
     [Theory]
-    [InlineData(Domain.Invoices.InvoiceStatus.Draft, InvoiceStatus.Sent, Domain.Invoices.State.InvoiceStatus.Sent)]
-    [InlineData(Domain.Invoices.InvoiceStatus.Sent, InvoiceStatus.PartiallyPaid, Domain.Invoices.State.InvoiceStatus.PartiallyPaid)]
-    [InlineData(Domain.Invoices.InvoiceStatus.PartiallyPaid, InvoiceStatus.PaidInFull, Domain.Invoices.State.InvoiceStatus.PaidInFull)]
-    [InlineData(Domain.Invoices.InvoiceStatus.PartiallyPaid, InvoiceStatus.Overdue, Domain.Invoices.State.InvoiceStatus.Overdue)]
-    [InlineData(Domain.Invoices.InvoiceStatus.Draft, InvoiceStatus.Canceled, Domain.Invoices.State.InvoiceStatus.Canceled)]
-    public async Task GIVEN_draft_invoice_WHEN_changing_status_to_sent_THEN_changes_invoice_status_to_sent(Domain.Invoices.InvoiceStatus oldStatus, InvoiceStatus newStatus, Domain.Invoices.State.InvoiceStatus expectedNewStatus) {
+    [InlineData(InvoiceStatus.Draft, InvoiceStatus.Sent)]
+    [InlineData(InvoiceStatus.Sent, InvoiceStatus.PartiallyPaid)]
+    [InlineData(InvoiceStatus.PartiallyPaid, InvoiceStatus.PaidInFull)]
+    [InlineData(InvoiceStatus.PartiallyPaid, InvoiceStatus.Overdue)]
+    [InlineData(InvoiceStatus.Draft, InvoiceStatus.Canceled)]
+    public async Task GIVEN_draft_invoice_WHEN_changing_status_to_sent_THEN_changes_invoice_status_to_sent(InvoiceStatus oldStatus, InvoiceStatus newStatus) {
       var invoice = Invoice(oldStatus);
       A.CallTo(() => _invoiceRepository.Get(invoice.Id)).Returns(invoice);
       var command = new ChangeInvoiceStatusCommand {
@@ -40,7 +37,7 @@ namespace Tests.Commands.ChangeInvoiceStatus {
 
       await _sut.Handle(command);
       
-      Assert.Equal(expectedNewStatus, invoice.Deflate().Status);
+      Assert.Equal(newStatus, invoice.Deflate().Status);
       A.CallTo(() => _invoiceRepository.Upsert(invoice)).MustHaveHappened();
     }
     

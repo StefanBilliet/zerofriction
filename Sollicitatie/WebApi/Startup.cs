@@ -14,6 +14,8 @@ using WebApi.Commands.AddContactDetailsForCustomer;
 using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
 using WebApi.Commands.AddCustomer;
 using WebApi.Commands.AddCustomer.Contracts;
+using WebApi.Commands.ChangeInvoiceStatus;
+using WebApi.Commands.ChangeInvoiceStatus.Contracts;
 using WebApi.Commands.InvoiceCustomer;
 using WebApi.Commands.InvoiceCustomer.Contracts;
 using WebApi.Commands.Shared;
@@ -52,6 +54,7 @@ namespace WebApi {
 
     private static void RegisterDataServices(IServiceCollection services) {
       services.AddTransient<ICustomerDataService, CustomerDataService>();
+      services.AddTransient<IInvoiceDataService, InvoiceDataService>();
     }
 
     private static void RegisterRepositories(IServiceCollection services) {
@@ -71,6 +74,7 @@ namespace WebApi {
       services
         .AddTransient<ICommandHandler<AddContactDetailsForCustomerCommand>, AddContactDetailsForCustomerCommandHandler>();
       services.AddTransient<ICommandHandler<InvoiceCustomerCommand>, InvoiceCustomerCommandHandler>();
+      services.AddTransient<ICommandHandler<ChangeInvoiceStatusCommand>, ChangeInvoiceStatusCommandHandler>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Domain.Invoices;
 
 namespace WebApi.Commands.ChangeInvoiceStatus.Contracts {
   public class ChangeInvoiceStatusCommand {

@@ -61,7 +61,7 @@ namespace Tests.Commands.InvoiceCustomer {
           TotalAmount = _.TotalAmount,
           PricePerUnit = _.PricePerUnit
         }).ToArray(),
-        Status = Domain.Invoices.State.InvoiceStatus.Draft
+        Status = InvoiceStatus.Draft
       };
       A.CallTo(() => _invoiceRepository.Upsert(A<Invoice>.That.HasState(state))).MustHaveHappened();
     }

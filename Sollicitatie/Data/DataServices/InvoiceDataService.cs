@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Domain.Invoices.State;
 using Infrastructure;
 
 namespace Data.DataServices {
@@ -19,7 +21,11 @@ namespace Data.DataServices {
     }
     
     public ValueTask<bool> InvoiceExists(Guid id) {
-      throw new NotImplementedException();
+      var query = _dbContext.Invoices
+        .GetItemLinqQueryable<InvoiceState>()
+        .Where(_ => _.TenantId == _currentTenantProvider.Get() && _.Id == id);
+
+      return _cosmosLinqQuery.GetFeedIterator(query).ToAsyncEnumerable().AnyAsync();
     }
   }
 }

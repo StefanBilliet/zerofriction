@@ -8,7 +8,7 @@ namespace Domain.Exceptions {
     public IllegalInvoiceStatusTransitionException() {
     }
 
-    public IllegalInvoiceStatusTransitionException(InvoiceStatus currentStatus, InvoiceStatus newStatus) : base($"An invoice cannot transition from ${currentStatus} to ${newStatus}") {
+    public IllegalInvoiceStatusTransitionException(InvoiceStatus currentStatus, InvoiceStatus newStatus) : base($"An invoice cannot transition from {currentStatus} to {newStatus}") {
     }
 
     public IllegalInvoiceStatusTransitionException(string message) : base(message) {
