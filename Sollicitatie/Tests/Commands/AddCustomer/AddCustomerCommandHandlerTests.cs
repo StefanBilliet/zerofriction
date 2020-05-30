@@ -2,7 +2,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture;
 using Data.Repositories;
-using Domain;
 using Domain.Customers;
 using Domain.Customers.State;
 using FakeItEasy;
@@ -13,7 +12,6 @@ using WebApi.Commands.AddCustomer.Contracts;
 using Xunit;
 using Address = Domain.Customers.State.Address;
 using ContactInformation = WebApi.Commands.Shared.Contracts.ContactInformation;
-using ContactInformationType = WebApi.Commands.Shared.Contracts.ContactInformationType;
 
 namespace Tests.Commands.AddCustomer {
   public class AddCustomerCommandHandlerTests {
@@ -63,7 +61,7 @@ namespace Tests.Commands.AddCustomer {
           AreaCode = command.Address.AreaCode
         },
         ContactDetails = command.ContactDetails.Select(_ => new Domain.Customers.State.ContactInformation {
-          Type = (Domain.Customers.State.ContactInformationType) _.Type,
+          Type = _.Type,
           Value = _.Value
         }).ToArray()
       };

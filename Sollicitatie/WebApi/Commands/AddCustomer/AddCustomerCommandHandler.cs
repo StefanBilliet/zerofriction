@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Data.Repositories;
-using Domain;
 using Domain.Customers;
 using FluentValidation;
 using WebApi.Commands.AddCustomer.Contracts;

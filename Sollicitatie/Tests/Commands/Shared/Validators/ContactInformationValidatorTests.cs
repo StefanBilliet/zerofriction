@@ -1,8 +1,9 @@
+using Domain.Customers;
 using FluentValidation;
 using FluentValidation.TestHelper;
-using WebApi.Commands.Shared.Contracts;
 using WebApi.Commands.Shared.Validators;
 using Xunit;
+using ContactInformation = WebApi.Commands.Shared.Contracts.ContactInformation;
 
 namespace Tests.Commands.Shared.Validators {
   public class ContactInformationValidatorTests {

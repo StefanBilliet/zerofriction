@@ -30,7 +30,7 @@ namespace Domain.Customers {
           AreaCode = _address.AreaCode
         },
         ContactDetails = _contactDetails.ContactInformation.Select(_ => new State.ContactInformation {
-          Type = (State.ContactInformationType) _.Type,
+          Type = _.Type,
           Value = _.Value
         }).ToArray()
       };

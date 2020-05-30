@@ -4,7 +4,6 @@ using AutoFixture;
 using AutoFixture.Xunit2;
 using Data;
 using Data.Repositories;
-using Domain;
 using Domain.Customers;
 using Domain.Customers.State;
 using Domain.Exceptions;

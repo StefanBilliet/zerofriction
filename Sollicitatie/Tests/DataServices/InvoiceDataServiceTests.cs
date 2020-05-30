@@ -4,7 +4,6 @@ using AutoFixture;
 using AutoFixture.Xunit2;
 using Data;
 using Data.DataServices;
-using Domain.Customers.State;
 using Domain.Invoices.State;
 using FakeItEasy;
 using Infrastructure;

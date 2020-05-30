@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Domain;
 using Domain.Customers;
 using Domain.Customers.State;
 using Domain.Exceptions;

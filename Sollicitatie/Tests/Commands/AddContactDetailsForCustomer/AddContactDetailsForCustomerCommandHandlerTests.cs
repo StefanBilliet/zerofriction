@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using AutoFixture;
 using Data.Repositories;
-using Domain;
 using Domain.Customers;
 using FakeItEasy;
 using FluentValidation;
@@ -11,7 +10,6 @@ using WebApi.Commands.AddContactDetailsForCustomer.Contracts;
 using Xunit;
 using Address = Domain.Customers.Address;
 using ContactInformation = WebApi.Commands.Shared.Contracts.ContactInformation;
-using ContactInformationType = WebApi.Commands.Shared.Contracts.ContactInformationType;
 
 namespace Tests.Commands.AddContactDetailsForCustomer {
   public class AddContactDetailsForCustomerCommandHandlerTests {
@@ -62,7 +60,7 @@ namespace Tests.Commands.AddContactDetailsForCustomer {
         _.Deflate().ContactDetails.DeepEquals(
           new[] {
             new Domain.Customers.State.ContactInformation {
-              Type = (Domain.Customers.State.ContactInformationType) command.ContactInformation.Type,
+              Type = command.ContactInformation.Type,
               Value = command.ContactInformation.Value
             }
           })))).MustHaveHappened();
