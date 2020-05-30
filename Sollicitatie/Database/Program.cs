@@ -1,11 +1,17 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Fluent;
+using Microsoft.Extensions.Configuration;
 
 namespace Database {
   public static class Program {
     public static async Task Main(string[] args) {
-      var client = new CosmosClientBuilder("AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==")
+      var configurationRoot = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .AddEnvironmentVariables()
+        .Build();
+      
+      var client = new CosmosClientBuilder(configurationRoot["ZeroFrictionDatabaseConnectionString"])
         .WithSerializerOptions(new CosmosSerializationOptions {PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase})
         .Build();
 
