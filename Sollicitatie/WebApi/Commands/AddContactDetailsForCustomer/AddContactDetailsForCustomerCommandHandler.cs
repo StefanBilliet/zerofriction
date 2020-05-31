@@ -20,7 +20,7 @@ namespace WebApi.Commands.AddContactDetailsForCustomer {
       await _validator.ValidateAndThrowAsync(command);
 
       var customer = await _customerRepository.Get(command.Id);
-      customer.AddContactInformation(new ContactInformation((ContactInformationType) command.ContactInformation.Type, command.ContactInformation.Value));
+      customer.AddContactInformation(new ContactInformation(command.ContactInformation.Type, command.ContactInformation.Value));
 
       await _customerRepository.Upsert(customer);
     }

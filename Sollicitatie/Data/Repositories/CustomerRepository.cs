@@ -56,7 +56,7 @@ namespace Data.Repositories {
       );
       var contactDetails = new ContactDetails(
         customerState.ContactDetails
-          .Select(_ => new ContactInformation((ContactInformationType) _.Type, _.Value)).ToArray()
+          .Select(_ => new ContactInformation(_.Type, _.Value)).ToArray()
       );
       return new Customer(id, name, address, contactDetails);
     }

@@ -27,7 +27,7 @@ namespace WebApi.Commands.AddCustomer {
         command.Id, 
         new Name(command.FirstName, command.SurName), 
         new Address(command.Address.Street, command.Address.NumberAndSuffix, command.Address.City, command.Address.AreaCode, command.Address.Area), 
-        new ContactDetails(command.ContactDetails.Select(_ => new ContactInformation((ContactInformationType) _.Type, _.Value)).ToArray()));
+        new ContactDetails(command.ContactDetails.Select(_ => new ContactInformation(_.Type, _.Value)).ToArray()));
 
       await _customerRepository.Upsert(customer);
     }

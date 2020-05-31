@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AutoFixture;
 using Data.Repositories;
 using Domain.Invoices;
 using FakeItEasy;
@@ -13,12 +12,10 @@ namespace Tests.Commands.ChangeInvoiceStatus {
   public class ChangeInvoiceStatusCommandHandlerTests {
     private readonly IInvoiceRepository _invoiceRepository;
     private readonly ICommandHandler<ChangeInvoiceStatusCommand> _sut;
-    private readonly Fixture _fixture;
 
     public ChangeInvoiceStatusCommandHandlerTests() {
       _invoiceRepository = A.Fake<IInvoiceRepository>();
       _sut = new ChangeInvoiceStatusCommandHandler(_invoiceRepository);
-      _fixture = new Fixture();
     }
 
     [Theory]
@@ -49,7 +46,7 @@ namespace Tests.Commands.ChangeInvoiceStatus {
         new Guid("86D8629E-3E1E-4E35-9B1F-A1E591376CB6"),
         50,
         new[] {
-          new InvoiceLine(1, 50, 50),
+          new InvoiceLine(1, 50, 50)
         },
         status
       );

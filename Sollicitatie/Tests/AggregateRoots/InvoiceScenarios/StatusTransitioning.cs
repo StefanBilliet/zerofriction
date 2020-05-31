@@ -240,7 +240,7 @@ namespace Tests.AggregateRoots.InvoiceScenarios {
         new Guid("86D8629E-3E1E-4E35-9B1F-A1E591376CB6"),
         50,
         new[] {
-          new InvoiceLine(1, 50, 50),
+          new InvoiceLine(1, 50, 50)
         },
         status
       );
